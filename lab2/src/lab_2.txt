@@ -1,0 +1,73 @@
+   # Задание 1
+    1  cd lab2
+    2  cd src/
+    3  ls
+    4  cd swap/
+    5  ls
+    6  nano swap.
+    7  nano swap.c
+    8  nano swap.h
+    9  nano main.c
+   10  nano swap.c
+   11  gcc -o swap main.c swap.c
+   12* 
+   13  ./swap
+  # Задание 2
+   14  cd ..
+   15  ls
+   16  cd revert_string/
+   17  ls
+   18  cat main.c
+   19  cat revert_string.h
+   20  cat revert_string.c
+   21  nano revert_string.c
+   22  gcc -o revert_string main.c revert_string.c
+   23  ./revert_string "hello"
+ # Задание 3
+   24  gcc -c revert_string.c -o revert_string.o
+   25  ar rcs librevert_string.a revert_string.o
+   26  gcc -c -fPIC revert_string.c -o revert_string_dyn.o
+   27  gcc -shared -o librevert_string.so revert_string_dyn.o
+   28  pwd
+   29  ls
+   30  rm librevert_string.a
+   31  rm librevert_string.so
+   32  ls
+   33  rm revert_string revert_string.o revert_string_dyn.o revert_string_static 
+   34  ls
+   35  nano revert_string.c
+   36  gcc -c revert_string.c -o revert_string.o
+   37  ar rcs librevert_static.a revert_string.o
+   38  gcc main.c -L. -lrevert_static -o revert_static
+   39  gcc -c -fPIC revert_string.c -o revert_string.o
+   40  gcc -shared -o librevert_dynamic.so revert_string.o
+   41  gcc main.c -L. -lrevert_dynamic -o revert_dynamic
+   42  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.
+   43  ./revert_static "Hello, World!"
+   44  ./revert_dynamic "Hello, World!"
+  # Задание 4
+   45  sudo apt -y install libcunit1 libcunit1-doc libcunit1-dev
+   46  sudo apt update
+   47  sudo apt -y install libcunit1 libcunit1-doc libcunit1-dev
+   48  св юю
+   49  cd ..
+   50  cd tests/
+   51  ls
+   52  cat tests.c 
+   53  LD_LIBRARY_PATH
+   54  cat LD_LIBRARY_PATH
+   55  printenv LD_LIBRARY_PATH
+   56  history
+   57  pwd
+   58  export LD_LIBRARY_PATH=/workspaces/os_lab_2019/lab2/src/revert_string
+   59  printenv LD_LIBRARY_PATH
+   60  cd ~
+   61  pwd
+   62  cd /workspaces/os_lab_2019/lab2/src/revert_string
+   63  gcc -o run_tests tests.c -L../revert_string -lrevert_dynamic -lcunit -I../revert_string
+   64  cd ../tests
+   65  gcc -o run_tests tests.c -L../revert_string -lrevert_dynamic -lcunit -I../revert_string
+   66  ../revert_string/revert_dynamic "Hello, World!"
+   67  ./run_tests
+   68  cd .. && history > lab_2.txt
+
