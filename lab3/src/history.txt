@@ -1,0 +1,90 @@
+    1  cd lab2
+    2  cd src/swap
+    3  nano swap.c
+    4  gcc -o swap main.c swap.c
+    5  ./swap
+    6  clear
+    7  cd ../revert_string
+    8  nano revert_string.c
+    9  nano main.c
+   10  gcc -o revert_string main.c revert_string.c
+   11  ./revert_string "hello"
+   12  clear
+   13  gcc -c revert_string.c -o revert_string.o
+   14  ar rcs librevert_string.a revert_string.o
+   15  gcc -c -fPIC revert_string.c -o revert_string_dyn.o
+   16  gcc -shared -o librevert_string.so revert_string_dyn.o
+   17  ls
+   18  rm librevert_string.a librevert_string.so revert_string.o revert_string.dyn
+   19  rm librevert_string.a librevert_string.so revert_string.o revert_string_dyn.o
+   20  ls
+   21  clear
+   22  gcc -c revert_string.c -o revert_string.o
+   23  ar rcs librevert_static.a revert_string.o
+   24  gcc main.c -L. -lrevert_static -o revert_static
+   25  gcc -c -fPIC revert_string.c -o revert_string.o
+   26  gcc -shared -o librevert_dynamic.so revert_string.o
+   27  gcc main.c -L. -lrevert_dynamic -o revert_dynamic
+   28  pwd
+   29  export LD_LIBRARY_PATH=/workspaces/os_lab_2019/lab2/src/revert_string
+   30  ./revert_static "Hello, World!"
+   31  ./revert_dynamic "Hello, World!"
+   32  clear
+   33  sudo apt update
+   34  sudo apt -y install libcunit1 libcunit1-doc libcunit1-dev
+   35  clear
+   36  cd ../tests/
+   37  gcc -o run_tests tests.c -L../revert_string -lrevert_dynamic -lcunit -I../revert_string
+   38  ./run_tests
+   39  clear
+   40  cd ..
+   41  clear
+   42  history
+   43  clear
+   44  cd lab3/src
+   45  nano find_min_max.c
+   46  nano sequential_min_max.c 
+   47  gcc -o sequential_min_max sequential_min_max.c find_min_max.c utils.c -I.
+   48  ./sequential_min_max 42 1000
+   49  ./sequential_min_max 10 20
+   50  nano parallel_min_max.c 
+   51  gcc -o parallel_min_max parallel_min_max.c find_min_max.c utils.c -I.
+   52  ./parallel_min_max --seed 42 --array_size 10000 --pnum 4
+   53  ./parallel_min_max --seed 42 --array_size 10000 --pnum 4 --by_files
+   54  clear
+   55  nano makefile 
+   56  make all
+   57  make sequential_min_max 
+   58  make clean
+   59  clear
+   60  nano run_sequential_min_max.c
+   61  nano makefile
+   62  make all
+   63  nano makefile
+   64  make all
+   65  ls
+   66  nano makefile
+   67  clear
+   68  nano run_sequential_min_max.c 
+   69  nano makefile 
+   70  make all
+   71  clear
+   72  nano run_sequential_min_max
+   73  clear
+   74  nano run_sequential_min_max.c
+   75  nano makefile 
+   76  make clean
+   77  make all
+   78  ./run_sequential_min_max 42 1000 4
+   79  ./run_sequential_min_max 42 1000
+   80  ./run_sequential_min_max 42 1000 4
+   81  make clean
+   82  nano makefile 
+   83  nano run_sequential_min_max.c
+   84  make clean
+   85  clear
+   86  nano run_sequential_min_max.c 
+   87  nano makefile 
+   88  make all
+   89  ./run_sequential_min_max 42 1000
+   90  history > history.txt
